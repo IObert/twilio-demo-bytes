@@ -13,9 +13,10 @@ const FastifyBodyParser = require("@fastify/formbody");
 
 const server = fastify({});
 
-server.register(FastifyBodyParser)
+server
+  .register(FastifyBodyParser)
   .all("/voice", async (req, reply) => {
-    console.log(req.body)
+    console.log(req.body);
     reply.type("text/xml");
     reply.send(`<Response>
     <Say>This call is powered by Twilio.</Say>
@@ -23,7 +24,7 @@ server.register(FastifyBodyParser)
     </Response>`);
   })
   .all("/text", async (req, reply) => {
-    console.log(req.body)
+    console.log(req.body);
     reply.type("text/xml");
     reply.send(`<Response>
     <Message><Body>

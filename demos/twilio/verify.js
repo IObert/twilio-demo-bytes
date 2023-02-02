@@ -12,10 +12,11 @@ Docs:
 require("dotenv").config();
 const client = require("twilio")();
 
-console.log(`Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SID}`);
+console.log(
+  `Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SID}`
+);
 
 (async () => {
-
   /************************************* 
   Step 1: Create a new Verify service
   *************************************/
@@ -25,7 +26,7 @@ console.log(`Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SI
   console.log(service.sid);
 
   const verifyService = "VA000"; // TODO Insert verification service sid
-  const to = "+491510000000";  // TODO Change number here
+  const to = "+491510000000"; // TODO Change number here
 
   /************************************* 
    Step 2: Create a new verification attempt

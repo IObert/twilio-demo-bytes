@@ -20,8 +20,12 @@ server
   .register(FastifyMultipart, { addToBody: true })
   .all("/mail", async (request, reply) => {
     const sender = JSON.parse(request.body.envelope).from;
-    console.log(`Incoming email "${request.body.subject}" from: ${email(sender)}`);
-    const readNumber = request.body.text.match(regExFloat) && request.body.text.match(regExFloat)[0];
+    console.log(
+      `Incoming email "${request.body.subject}" from: ${email(sender)}`
+    );
+    const readNumber =
+      request.body.text.match(regExFloat) &&
+      request.body.text.match(regExFloat)[0];
 
     try {
       await sendgridClient.send({

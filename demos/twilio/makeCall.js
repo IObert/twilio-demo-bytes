@@ -10,27 +10,28 @@ Docs: https://www.twilio.com/docs/voice/twiml/say
 require("dotenv").config();
 const client = require("twilio")();
 
-console.log(`Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SID}`);
+console.log(
+  `Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SID}`
+);
 
-const from = "+491510000000", to = "+491510000000";  // TODO Change numbers here
+const from = "+491510000000",
+  to = "+491510000000"; // TODO Change numbers here
 
 (async () => {
-
   /************************************* 
   Step 1: Trigger the call
   *************************************/
-  const call = await client.calls
-    .create({
-      twiml: `<Response>
+  const call = await client.calls.create({
+    twiml: `<Response>
     <Say>Hi</Say>
     <Say language="de-DE">Ich werde 60 Sekunden warten und dann auflegen.</Say>
     <Pause length="60" />
     </Response>`,
-      to,
-      from
-      // statusCallback: "https://mobert.ngrok.io",
-    });
-  console.log(call.sid)
+    to,
+    from,
+    // statusCallback: "https://mobert.ngrok.io",
+  });
+  console.log(call.sid);
 
   const callSid = "CA0000000"; // TODO Insert call sid
 
@@ -42,5 +43,4 @@ const from = "+491510000000", to = "+491510000000";  // TODO Change numbers here
   //   .calls(callSid)
   //   .update({ twiml: "<Response><Say>Ahoy there, this is an update. Good bye.</Say></Response>" })
   //   .then((call) => console.log(call.to));
-
 })();

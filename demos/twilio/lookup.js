@@ -10,10 +10,13 @@ Docs: https://www.twilio.com/docs/lookup/v2-api
 require("dotenv").config();
 const client = require("twilio")();
 
-console.log(`Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SID}`);
+console.log(
+  `Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SID}`
+);
 
 (async () => {
-  const phone_number = await client.lookups.v2.phoneNumbers("+491510000000")  // TODO Change number here
-    .fetch({ fields: 'live_activity,sim_swap' }); // Optional: Request more fields
+  const phone_number = await client.lookups.v2
+    .phoneNumbers("+491510000000") // TODO Change number here
+    .fetch({ fields: "live_activity,sim_swap" }); // Optional: Request more fields
   console.log(phone_number);
 })();

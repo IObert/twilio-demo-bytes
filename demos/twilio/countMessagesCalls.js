@@ -10,7 +10,9 @@ you want start the count
 require("dotenv").config();
 const client = require("twilio")();
 
-console.log(`Counting for number ${NUMBER} of account ${process.env.TWILIO_ACCOUNT_SID}.`);
+console.log(
+  `Counting for number ${NUMBER} of account ${process.env.TWILIO_ACCOUNT_SID}.`
+);
 
 const NUMBER = "+491510000000"; // TODO Add number here
 
@@ -31,16 +33,15 @@ const today =
 
   const messages = await client.messages.list({
     // dateSent: day, // TODO Change if needed
-    from: NUMBER
+    from: NUMBER,
   });
   console.log(`Triggered messages: ${messages.length}`);
 
   const waMessages = await client.messages.list({
     // dateSent: day, // TODO Change if needed
-    from: `whatsapp:${NUMBER}`
+    from: `whatsapp:${NUMBER}`,
   });
   console.log(`Triggered WhatsApp messages: ${waMessages.length}`);
-
 
   console.log(`Total: ${calls.length + messages.length + waMessages.length}`);
 })();

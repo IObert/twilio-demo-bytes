@@ -16,14 +16,16 @@ const client = require("twilio")(
   process.env.TWILIO_IR_AUTH_TOKEN,
   {
     accountSid: process.env.TWILIO_ACCOUNT_SID,
-    edge: 'dublin',
-    region: 'ie1'
-  });
+    edge: "dublin",
+    region: "ie1",
+  }
+);
 
-console.log(`Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SID}`);
+console.log(
+  `Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SID}`
+);
 
 (async () => {
-
   /************************************* 
   Step 1: Create a new Verify service
   *************************************/
@@ -33,7 +35,7 @@ console.log(`Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SI
   console.log(service.sid);
 
   const verifyService = "VA000"; // TODO Insert sid of the verification service
-  const to = "+491510000000";  // TODO Change number here
+  const to = "+491510000000"; // TODO Change number here
 
   /************************************* 
   Step 2: Create a new verification attempt
@@ -58,5 +60,4 @@ console.log(`Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SI
   //   .services(verifyService)
   //   .verificationChecks.create({ to });
   // console.log(verification_check);
-
 })();
