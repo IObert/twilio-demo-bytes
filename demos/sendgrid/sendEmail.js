@@ -6,6 +6,7 @@ Optional: Send a email with HTML content or use a template
 Docs: https://docs.sendgrid.com/api-reference/mail-send/mail-send
 *************************************/
 
+require("dotenv").config();
 const { MailService } = require("@sendgrid/mail");
 const sendgridClient = new MailService();
 sendgridClient.setApiKey(process.env.SENDGRID_API_KEY);

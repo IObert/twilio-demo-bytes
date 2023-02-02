@@ -6,6 +6,7 @@ the inbound parse URL in the SendGrid application
 Docs: https://docs.sendgrid.com/ui/account-and-settings/inbound-parse
 *************************************/
 
+require("dotenv").config();
 const fastify = require("fastify");
 const FastifyMultipart = require("@fastify/multipart");
 const { MailService } = require("@sendgrid/mail");

@@ -11,6 +11,7 @@ Docs:
  - https://stackoverflow.com/questions/71788422/sendgrid-where-to-set-preheader-when-sending-html-dynamic-template-via-web-api
 *************************************/
 
+require("dotenv").config();
 const { MailService } = require("@sendgrid/mail");
 const sendgridClient = new MailService();
 sendgridClient.setApiKey(process.env.SENDGRID_API_KEY);
