@@ -16,19 +16,19 @@ const sendgridClient = new MailService();
 sendgridClient.setApiKey(process.env.SENDGRID_API_KEY);
 
 const recipient = "name@example.com"; // TODO Change email here
-const subject = "Subject can be set via dynamic variable";
+const subject = 'Subject can be set via dynamic variable';
 
 (async () => {
   await sendgridClient.send({
     to: {
-      email: recipient,
+email: recipient,
     },
     from: {
-      email: process.env.SENDGRID_EMAIL,
+email: process.env.SENDGRID_EMAIL,
       name: "SendGrid Demo",
     },
     subject,
-    templateId: "d-1e5ad7894a0b42b7b62c441698141505", // TODO Change template ID here
+templateId: "d-1e5ad7894a0b42b7b62c441698141505", // TODO Change template ID here
     dynamic_template_data: {
       subject,
       preheader: "Now I appear in the email",
