@@ -26,5 +26,10 @@ client.messages
     // mediaUrl: "https://demo.twilio.com/owl.png",
     // statusCallback: "https://mobert.ngrok.io",
     // from: "AlphaSender",
+    // contentSid: 'HX...XXX', // requires messaging service
+    // from: 'MG...XXX',
+    // contentVariables: JSON.stringify({
+    //   1: 'Name'
+    // }),
   })
   .then((message) => console.log(message.sid));
