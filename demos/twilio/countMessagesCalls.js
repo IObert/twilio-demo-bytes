@@ -10,11 +10,12 @@ you want start the count
 require("dotenv").config();
 const client = require("twilio")();
 
+const NUMBER = "+491510000000"; // TODO Add number here
+const DISTINCT = true;
+
 console.log(
   `Counting for number ${NUMBER} of account ${process.env.TWILIO_ACCOUNT_SID}.`
 );
-
-const NUMBER = "+491510000000"; // TODO Add number here
 
 const day = "9/10/2022";
 const today =
@@ -29,19 +30,34 @@ const today =
     // dateSent: day, // TODO Change if needed
     from: NUMBER,
   });
-  console.log(`Triggered calls: ${calls.length}`);
+
+  const uniqueCalls = new Set(calls.map((m) => m.to));
+  console.log(
+    `Triggered calls: ${DISTINCT ? uniqueCalls.size : uniqueMessages.length}`
+  );
 
   const messages = await client.messages.list({
     // dateSent: day, // TODO Change if needed
     from: NUMBER,
   });
-  console.log(`Triggered messages: ${messages.length}`);
+  const uniqueMessages = new Set(messages.map((m) => m.to));
+  console.log(
+    `Triggered messages: ${DISTINCT ? uniqueMessages.size : messages.length}`
+  );
 
   const waMessages = await client.messages.list({
     // dateSent: day, // TODO Change if needed
     from: `whatsapp:${NUMBER}`,
   });
-  console.log(`Triggered WhatsApp messages: ${waMessages.length}`);
+  const uniqueWaMessages = new Set(waMessages.map((m) => m.to));
+  console.log(
+    `Triggered WhatsApp messages: ${
+      DISTINCT ? uniqueWaMessages.size : waMessages.length
+    }`
+  );
 
   console.log(`Total: ${calls.length + messages.length + waMessages.length}`);
+  console.log(
+    `Unique: ${uniqueCalls.size + uniqueMessages.size + uniqueWaMessages.size}`
+  );
 })();
