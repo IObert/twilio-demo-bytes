@@ -32,4 +32,5 @@ client.messages
     //   1: 'Name'
     // }),
   })
-  .then((message) => console.log(message.sid));
+  .then((message) => console.log(message.sid))
+  .catch((error) => console.error(error));
