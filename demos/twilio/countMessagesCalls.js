@@ -8,7 +8,7 @@ you want start the count
 *************************************/
 
 require("dotenv").config();
-const client = require("twilio")();
+const client = require("./getTwilioClient")();
 
 const NUMBER = "+491510000000"; // TODO Add number here
 const DISTINCT = true;

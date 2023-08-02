@@ -11,7 +11,20 @@
     "prepare": "husky install",
     "start": "npm run send-message",
     "conversations": "node demos/twilio/conversations",
-    "send-message": "node demos/twilio/sendMessage"
+    "count": "node demos/twilio/countMessagesCalls",
+    "lookup": "node demos/twilio/lookup",
+    "make-call": "node demos/twilio/makeCall",
+    "send-message": "node demos/twilio/sendMessage",
+    "verify": "node demos/twilio/verify",
+    "verify-sna": "node demos/twilio/verify-sna",
+    "1asdads": "node demos/twilio/sendMessage",
+    "sends22sage": "node demos/twilio/sendMessage",
+    "send3ssage": "node demos/twilio/sendMessage",
+    "send4ssage": "node demos/twilio/sendMessage",
+    "sendsdassage": "node demos/twilio/sendMessage",
+    "sendsadsage": "node demos/twilio/sendMessage",
+    "sendasdssage": "node demos/twilio/sendMessage",
+    "sendsdasage": "node demos/twilio/sendMessage"
   },
   "repository": {
     "type": "git",

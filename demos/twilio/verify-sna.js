@@ -11,15 +11,7 @@ Docs:
 *************************************/
 
 require("dotenv").config();
-const client = require("twilio")(
-  process.env.TWILIO_IR_API_KEY,
-  process.env.TWILIO_IR_AUTH_TOKEN,
-  {
-    accountSid: process.env.TWILIO_ACCOUNT_SID,
-    edge: "dublin",
-    region: "ie1",
-  }
-);
+const client = require("./getTwilioClient")("dublin");
 
 console.log(
   `Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SID}`

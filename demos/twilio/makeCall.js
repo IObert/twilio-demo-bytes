@@ -8,7 +8,7 @@ Docs: https://www.twilio.com/docs/voice/twiml/say
 *************************************/
 
 require("dotenv").config();
-const client = require("twilio")();
+const client = require("./getTwilioClient")();
 
 console.log(
   `Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SID}`
