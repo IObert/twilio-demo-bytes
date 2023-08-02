@@ -17,14 +17,8 @@
     "send-message": "node demos/twilio/sendMessage",
     "verify": "node demos/twilio/verify",
     "verify-sna": "node demos/twilio/verify-sna",
-    "1asdads": "node demos/twilio/sendMessage",
-    "sends22sage": "node demos/twilio/sendMessage",
-    "send3ssage": "node demos/twilio/sendMessage",
-    "send4ssage": "node demos/twilio/sendMessage",
-    "sendsdassage": "node demos/twilio/sendMessage",
-    "sendsadsage": "node demos/twilio/sendMessage",
-    "sendasdssage": "node demos/twilio/sendMessage",
-    "sendsdasage": "node demos/twilio/sendMessage"
+    "send-email": "node demos/sendgrid/sendEmail",
+    "send-advanced-email": "node demos/sendgrid/sendAdvancedEmail"
   },
   "repository": {
     "type": "git",
