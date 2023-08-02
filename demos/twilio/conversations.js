@@ -1,15 +1,18 @@
 /************************************* 
 Run this code to send a message via the Conversations API
 
-Required: Start a conversation via the sandbox
- - https://console.twilio.com/us1/develop/conversations/tryout/whatsapp/user
+Required: 
+ - Add the ConversationSID 
+ - Start a conversation via the sandbox
+   https://console.twilio.com/us1/develop/conversations/tryout/whatsapp/user
+Optional:
+ - Add a ContentSID if you want to use the content API
+
+https://www.twilio.com/docs/conversations/quickstart
 *************************************/
 
 require("dotenv").config();
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const apiKey = process.env.TWILIO_API_KEY;
-const apiSecret = process.env.TWILIO_API_SECRET;
-const client = require("twilio")(apiKey, apiSecret, { accountSid: accountSid });
+const client = require("./getTwilioClient")();
 
 console.log(
   `Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SID}`
@@ -25,7 +28,7 @@ const wrong = "Blaubeere",
     "Orange, Mango, Banana, Passion Fruit, Flaxseed, Coconut Oil 🍊🥭🍌🥥";
 
 const baseObject = {
-  contentSid: "HX0f91129ec6e3832b310f4f95533daa01", // TODO Change numbers here
+  contentSid: "HX19333d1340589f693db920767ace8ee4", // TODO Change numbers here
   contentVariables: JSON.stringify({
     1: firstOption,
     2: firstDetails,
@@ -37,9 +40,11 @@ const baseObject = {
 };
 
 client.conversations.v1
-  .conversations("CHd5af2d49f4d44322871388ed0ea3e7e8") // TODO Change this ID here
+  .conversations("CH898aeeddb59d4fe281a2903e18b55cb4") // TODO Change this ID here
   .messages.create({
     author: "system",
-    ...baseObject,
+    body: "Hello",
+    // ...baseObject,
   })
-  .then((message) => console.log(message.sid));
+  .then((message) => console.log(message.sid))
+  .catch((error) => console.error(error));

@@ -10,6 +10,7 @@
     "prettier": "prettier . --write",
     "prepare": "husky install",
     "start": "npm run send-message",
+    "conversations": "node demos/twilio/conversations",
     "send-message": "node demos/twilio/sendMessage"
   },
   "repository": {
