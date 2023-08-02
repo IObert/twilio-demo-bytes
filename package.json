@@ -8,7 +8,9 @@
   "private": "true",
   "scripts": {
     "prettier": "prettier . --write",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "start": "npm run send-message",
+    "send-message": "node demos/twilio/sendMessage"
   },
   "repository": {
     "type": "git",
@@ -28,15 +30,15 @@
   "homepage": "https://github.com/IObert/twilio-demo-bytes#readme",
   "dependencies": {
     "@fastify/formbody": "^7.4.0",
-    "@fastify/multipart": "^7.4.0",
+    "@fastify/multipart": "^7.7.3",
     "@sendgrid/mail": "^7.7.0",
     "datamask": "^1.0.0",
-    "dotenv": "^16.0.3",
-    "fastify": "^4.12.0",
-    "twilio": "^3.84.1"
+    "dotenv": "^16.3.1",
+    "fastify": "^4.21.0",
+    "twilio": "^4.14.1"
   },
   "devDependencies": {
     "husky": "^8.0.3",
-    "prettier": "^2.8.3"
+    "prettier": "^3.0.0"
   }
 }
