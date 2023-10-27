@@ -3,7 +3,7 @@ Run this code to loop up details about
 a phone number
 
 Required: Add the number you want to look up
-Optional: Switch the data package
+Optional: Look up other packages / fields
 Docs: https://www.twilio.com/docs/lookup/v2-api
 *************************************/
 

@@ -1,5 +1,5 @@
 /************************************* 
-Run this code to send a message
+Run this code to shorten links in messages
 
 Required: Add the numbers which will communicate
 Optional: Send WhatsApp messages if the sender is enabled
