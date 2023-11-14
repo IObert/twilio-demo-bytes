@@ -8,6 +8,7 @@ Docs: https://docs.sendgrid.com/ui/account-and-settings/inbound-parse
 
 require("dotenv").config();
 const fastify = require("fastify");
+const ngrok = require("ngrok");
 const FastifyMultipart = require("@fastify/multipart");
 const { MailService } = require("@sendgrid/mail");
 const { email } = require("datamask");
@@ -51,10 +52,23 @@ server
     reply.send();
   });
 
-server.listen({ port: 3000 }, function (err, address) {
+const port = 3000;
+
+server.listen({ port }, async function (err, address) {
   if (err) {
     server.log.error(err);
     process.exit(1);
   }
-  console.log(`Restarted at: ${address}`);
+  console.log(`Started locally at: ${address}`);
+  process.env.NGROK_TOKEN && (await ngrok.authtoken(process.env.NGROK_TOKEN));
+  ngrok
+    .connect({ port, subdomain: process.env.NGROK_SUBDOMAIN })
+    .then((url) => {
+      console.log(
+        `Started globally at: ${url}. Make sure to enter this in the SendGrid Console under "Inbound Parse".`
+      );
+    })
+    .catch((err) => {
+      console.log(`Couldn't start ngrok ${err?.body?.details?.err}`);
+    });
 });
