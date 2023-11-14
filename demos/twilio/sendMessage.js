@@ -15,8 +15,9 @@ console.log(
   `Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SID}`
 );
 
-const from = "+491510000000",
-  to = "+491510000000"; // TODO Change numbers here, Optional: Change to WhatsApp
+const from = `${process.env.TWILIO_WA_SENDER || "Hello"}`,
+  to = "+491510000000", // TODO Change numbers here, Optional: Change to WhatsApp
+  contentSid = process.env.TWILIO_CONTENT_SID; //
 
 client.messages
   .create({
