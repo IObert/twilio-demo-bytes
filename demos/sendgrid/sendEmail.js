@@ -63,5 +63,5 @@ const recipient = "name@example.com"; // TODO Change email here
           </tr>
         </table>`,
   });
-  console.log(`Emails has been sent to ${recipient}.`);
+  console.log(`Email has been sent to ${recipient}.`);
 })();

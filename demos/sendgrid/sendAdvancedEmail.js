@@ -45,5 +45,5 @@ const subject = "Subject can be set via dynamic variable";
     ],
     categories: ["cake", "pie", "baking"],
   });
-  console.log(`Emails has been sent to ${recipient}.`);
+  console.log(`Email has been sent to ${recipient}.`);
 })();
