@@ -15,20 +15,18 @@ console.log(
   `Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SID}`
 );
 
-const from = `${process.env.TWILIO_WA_SENDER || "Hello"}`,
-  to = "+491510000000", // TODO Change numbers here, Optional: Change to WhatsApp
-  contentSid = process.env.TWILIO_CONTENT_SID; //
+const from = process.env.TWILIO_SENDER || "Hello", // Optional: Change to phone number
+  to = "491510000000", // TODO Change numbers here, Optional: Change to WhatsApp
+  contentSid = process.env.TWILIO_CONTENT_SID;
 
 client.messages
   .create({
-    body: "Welcome to our Messaging Platform!",
+    body: "Welcome to our Messaging Service!",
     to,
     from,
     // mediaUrl: "https://demo.twilio.com/owl.png",
     // statusCallback: "https://mobert.ngrok.io",
-    // from: "AlphaSender",
-    // contentSid: 'HX...XXX', // requires messaging service
-    // from: 'MG...XXX',
+    // contentSid, // requires messaging service
     // contentVariables: JSON.stringify({
     //   1: 'Name'
     // }),

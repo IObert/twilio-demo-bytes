@@ -14,6 +14,10 @@ Before you can run this project, ensure that you have the following prerequisite
 
 - A verified email sender in your SendGrid account. To set up a verified email sender, follow the instructions [here](https://sendgrid.com/docs/ui/sending-email/sender-verification/).
 
+**Optional:**
+
+- [ngrok](https://ngrok.com/) to expose local ports to the internet
+
 ## Project Configuration
 
 This project requires the usage of environment variables to configure certain services. To set up these variables, follow the steps below:
@@ -31,8 +35,14 @@ This project requires the usage of environment variables to configure certain se
    TWILIO_API_KEY="xxxxxx"
    TWILIO_API_SECRET="xxxxxx"
 
+   TWILIO_SENDER="MSxxxxxx" # messaging service sid, only needed to send WhatsApp messages
+   TWILIO_CONTENT_SID="xxxxx" # only needed to send initial WhatsApp messages
+
    TWILIO_IR_API_KEY="xxxxxx"
    TWILIO_IR_AUTH_TOKEN="xxxxxx"
+
+   NGROK_SUBDOMAIN="xxxxxx" # only needed the expose localhost to the internet
+   NGROK_TOKEN # only needed the expose localhost to the internet
    ```
 
    - Replace `SG.xxxxxx` with your actual SendGrid API key.
