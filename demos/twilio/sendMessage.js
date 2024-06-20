@@ -12,21 +12,17 @@ require("dotenv").config();
 const client = require("./getTwilioClient")();
 
 console.log(
-  `Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SID}`
+  `Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SID}`,
 );
-
-const from = process.env.TWILIO_SENDER || "Hello", // Optional: Change to phone number
-  to = "491510000000", // TODO Change numbers here, Optional: Change to WhatsApp
-  contentSid = process.env.TWILIO_CONTENT_SID;
 
 client.messages
   .create({
     body: "Welcome to our Messaging Service!",
-    to,
-    from,
+    to: "491510000000", // TODO Change numbers here, Optional: Change to WhatsApp
+    from: process.env.TWILIO_SENDER || "Hello", // Optional: Change to phone number
     // mediaUrl: "https://demo.twilio.com/owl.png",
     // statusCallback: "https://mobert.ngrok.io",
-    // contentSid, // requires messaging service
+    // contentSid: process.env.TWILIO_CONTENT_SID // requires messaging service
     // contentVariables: JSON.stringify({
     //   1: 'Name'
     // }),

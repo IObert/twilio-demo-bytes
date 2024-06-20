@@ -11,12 +11,10 @@ const { MailService } = require("@sendgrid/mail");
 const sendgridClient = new MailService();
 sendgridClient.setApiKey(process.env.SENDGRID_API_KEY);
 
-const recipient = "name@example.com"; // TODO Change email here
-
 (async () => {
   await sendgridClient.send({
     to: {
-      email: recipient,
+      email: "name@example.com", // TODO Change email here
     },
     from: {
       email: process.env.SENDGRID_EMAIL,

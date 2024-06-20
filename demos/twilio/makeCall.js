@@ -11,11 +11,8 @@ require("dotenv").config();
 const client = require("./getTwilioClient")();
 
 console.log(
-  `Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SID}`
+  `Initialized client with account sid ${process.env.TWILIO_ACCOUNT_SID}`,
 );
-
-const from = "+491510000000",
-  to = "+491510000000"; // TODO Change numbers here
 
 (async () => {
   /************************************* 
@@ -27,8 +24,8 @@ const from = "+491510000000",
     <Say language="de-DE">Ich werde 60 Sekunden warten und dann auflegen.</Say>
     <Pause length="60" />
     </Response>`,
-    to,
-    from,
+    to: "+491510000000", // TODO Change numbers here
+    from: "+491510000000",
     // statusCallback: "https://mobert.ngrok.io",
   });
   console.log(call.sid);
