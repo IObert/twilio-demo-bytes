@@ -61,5 +61,5 @@ sendgridClient.setApiKey(process.env.SENDGRID_API_KEY);
           </tr>
         </table>`,
   });
-  console.log(`Email has been sent to ${recipient}.`);
+  console.log(`Email has been sent.`);
 })();
