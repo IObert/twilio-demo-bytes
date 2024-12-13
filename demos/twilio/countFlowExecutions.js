@@ -24,7 +24,7 @@ console.log(
       const steps = await client.studio.v2
         .flows(FLOW_SID)
         .executions(execution.sid)
-        .steps.list({ limit: 1 });
+        .steps.list({ limit: 10 });
 
       return steps[0].transitionedTo;
     }),
@@ -42,4 +42,15 @@ console.log(
   );
   console.log(`Triggered total executions: ${executions.length}`);
   console.log(`Triggered unique executions: ${uniqueExecutions.size}`);
+
+  // approximate country code count with the first 3 characters of the contactChannelAddress
+  const countedCountryCodes = Array.from(uniqueExecutions).reduce(
+    (acc, curr) => {
+      const countryCode = curr.split(":")[1].slice(0, 3);
+      acc[countryCode] = (acc[countryCode] || 0) + 1;
+      return acc;
+    },
+    {},
+  );
+  console.log(`Unique country codes (approx): `, countedCountryCodes);
 })();
