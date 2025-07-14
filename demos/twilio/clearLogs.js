@@ -15,19 +15,42 @@ console.log(`Clearing logs for account ${process.env.TWILIO_ACCOUNT_SID}.`);
 const throttle = throttledQueue(60, 1000); // at most 5 requests per second.
 
 (async () => {
-  let messages = await client.messages.list({});
+  // page over all messages
+  let messagesPage = await client.messages.page({ pageSize: 1000 });
 
-  messages.map((message) => {
-    throttle(async () => {
-      console.log(message.body);
-      return client.messages(message.sid).remove();
-    });
-  });
-  throttle().then(() => {
-    console.log(`Deleted ${messages.length} messages successfully.`);
-  });
+  while (messagesPage && messagesPage.instances.length > 0) {
+    const messages = messagesPage.instances;
+    console.log(`Processing ${messages.length} messages...`);
+    try {
+      messages.map((message) => {
+        throttle(async () => {
+          console.log(message.body);
+          return client.messages(message.sid).remove();
+        });
+      });
+    } catch (error) {
+      console.error("Error processing messages:");
+    }
 
-  const calls = await client.calls.list({});
+    try {
+      await throttle().then(() => {
+        console.log(`Deleted ${messages.length} messages successfully.`);
+      });
+    } catch (error) {
+      console.error("Error deleting messages:");
+    }
+
+    try {
+      messagesPage = await messagesPage.nextPage();
+    } catch (error) {
+      console.error("Error fetching next page of messages:");
+      break;
+    }
+  }
+
+  const calls = await client.calls.list({
+    limit: 400, // Adjust limit as needed
+  });
 
   calls.map((call) => {
     throttle(async () => {
