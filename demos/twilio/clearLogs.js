@@ -7,12 +7,16 @@ to remove all user data from the logs
 //TODO make sure this works before commiting and pushing
 
 require("dotenv").config();
-const throttledQueue = require("throttled-queue");
+const { throttledQueue, seconds } = require("throttled-queue");
 const client = require("./getTwilioClient")();
 
 console.log(`Clearing logs for account ${process.env.TWILIO_ACCOUNT_SID}.`);
 
-const throttle = throttledQueue(60, 1000); // at most 5 requests per second.
+const throttle = throttledQueue({
+  maxPerInterval: 5,
+  interval: seconds(1),
+  evenlySpaced: true,
+});
 
 (async () => {
   // page over all messages
@@ -33,7 +37,7 @@ const throttle = throttledQueue(60, 1000); // at most 5 requests per second.
     }
 
     try {
-      await throttle().then(() => {
+      await throttle(() => {
         console.log(`Deleted ${messages.length} messages successfully.`);
       });
     } catch (error) {
@@ -43,7 +47,7 @@ const throttle = throttledQueue(60, 1000); // at most 5 requests per second.
     try {
       messagesPage = await messagesPage.nextPage();
     } catch (error) {
-      console.error("Error fetching next page of messages:");
+      console.error("Error fetching next page of messages:", error);
       break;
     }
   }
@@ -58,7 +62,7 @@ const throttle = throttledQueue(60, 1000); // at most 5 requests per second.
     });
   });
 
-  throttle().then(() => {
+  throttle(() => {
     console.log(`Deleted ${calls.length} calls successfully.`);
   });
 })();

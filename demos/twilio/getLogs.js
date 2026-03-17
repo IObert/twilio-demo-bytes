@@ -9,7 +9,7 @@ to remove all user data from the logs
 require("dotenv").config();
 const client = require("./getTwilioClient")();
 
-console.log(`Clearing logs for account ${process.env.TWILIO_ACCOUNT_SID}.`);
+console.log(`Getting logs for account ${process.env.TWILIO_ACCOUNT_SID}.`);
 
 (async () => {
   let messages = await client.messages.list({});
